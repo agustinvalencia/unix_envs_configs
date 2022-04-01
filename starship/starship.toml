@@ -1,0 +1,102 @@
+# Prompt order
+
+#format = """$jobs$time$line_break$character"""
+
+format = """\
+$battery$time$memory_usage$jobs\
+$sudo\
+$fill\
+$directory$git_branch$git_commit$git_state$git_metrics$git_status\
+$docker_context$container\
+$julia$nodejs$python$rlang$conda$custom\
+$cmd_duration\
+$shell\
+$line_break\
+$character
+"""
+
+continuation_prompt = "▶▶"
+[fill]
+symbol = " "
+
+# symbols customisation
+
+[docker_context]
+symbol = " "
+
+#[kubernetes]
+#symbol = ﴱ  
+
+[julia]
+symbol = " "
+
+[directory]
+read_only = " "
+style = "bold #50fa7b"
+
+[conda]
+symbol = " "
+
+[python]
+symbol = " "
+format = 'via [${symbol}${pyenv_prefix}(${version})]($style)[( \($virtualenv\))](#ffb86c)'
+style = "purple"
+python_binary = ["./venv/bin/python", "python", "python3", "python2"]
+
+[rlang]
+symbol = " "
+
+[jobs]
+#symbol = " " 
+symbol = " "
+number_threshold = 1
+
+[memory_usage]
+disabled = false
+threshold = -1
+symbol = " "
+style = "white"
+format = "[$symbol${ram}]($style) "
+
+[time]
+disabled = false
+style = "#ffb86c"
+time_format = "%R"
+format = '[ $time]($style) '
+
+[battery]
+full_symbol = "  "
+charging_symbol = "    " 
+discharging_symbol = "   "
+unknown_symbol = "  "
+empty_symbol = "   "
+format = "[$symbol]($style)"
+
+[[battery.display]]
+threshold = 100
+style = "bold green"
+
+# ----------------------------
+# From Dracula snippet
+[character]
+success_symbol = "[ ](bold #f8f8f2)"
+error_symbol = "[ ](bold #ff5555)"
+
+[cmd_duration]
+style = "bold #f1fa8c"
+
+[git_branch]
+style = "bold #ff79c6"
+
+[git_status]
+style = "bold #ff5555"
+
+[hostname]
+style = "bold #ff5555"
+
+[username]
+format = "[$user]($style) on "
+style_user = "bold #ff79c6"
+
+
+
